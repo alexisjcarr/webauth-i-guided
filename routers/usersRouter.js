@@ -1,7 +1,8 @@
 const router = require("express").Router();
-const Users = require("../database/dbConfig");
+const Users = require("../users/users-model");
+const authenticate = require("../middleware");
 
-router.get("/api/users", (req, res) => {
+router.get("/", authenticate, (req, res) => {
   Users.find()
     .then(users => {
       res.json(users);
